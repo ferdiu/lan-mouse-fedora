@@ -26,6 +26,9 @@ BuildRequires:  desktop-file-utils
 # Icon cache update
 BuildRequires:  /usr/bin/gtk-update-icon-cache
 
+# Git may be required during build by dependencies
+BuildRequires:  git-core
+
 Requires:       hicolor-icon-theme
 
 # Optional firewalld support
@@ -48,9 +51,7 @@ Features:
 
 %build
 # Build with release profile
-# Skip git operations in build.rs
-export CARGO_NET_OFFLINE=true
-cargo build -j $(nproc) --release --locked
+cargo build -j $(nproc) --release
 
 %install
 # Install binary
