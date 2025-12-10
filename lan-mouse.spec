@@ -48,7 +48,9 @@ Features:
 
 %build
 # Build with release profile
-cargo build --release
+# Skip git operations in build.rs
+export CARGO_NET_OFFLINE=true
+cargo build -j $(nproc) --release --locked
 
 %install
 # Install binary
